@@ -1,6 +1,6 @@
 #region auth configuration
 $tenantId = 'powers-hell.com'
-$clientId = ''
+$clientId = 'a0530fb7-7198-4a11-b996-9e711097b24f'
 $clientSecret = ''
 $scope    = 'https://graph.microsoft.com/.default'
 #endregion
@@ -9,7 +9,7 @@ $scope    = 'https://graph.microsoft.com/.default'
 #region Az.Accounts method
 $credentials = New-Object System.Management.Automation.PSCredential $clientId, ($clientSecret | ConvertTo-SecureString -AsPlainText -Force)
 Connect-AzAccount -ServicePrincipal -Credential $credentials -Tenant $tenantId
-$token = (Get-AzAccessToken -resourceUrl "https://graph.microsoft.com/").Token
+$token = (Get-AzAccessToken -resourceUrl "https://graph.microsoft.com/")
 #endregion
 
 

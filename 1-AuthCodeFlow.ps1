@@ -1,8 +1,10 @@
-#auth configuration
+#auth configuration. 
+# Hey Ben, this will fail the first time - dont freak out, everyones watching. Go fix the redirects.
 $tenantId = 'powers-hell.com'
-$clientId = ''
-$redirectUri = 'http://localhost:5001/auth/'
-$scope    = 'https://graph.microsoft.com/.default'
+$clientId = 'a0530fb7-7198-4a11-b996-9e711097b24f'
+$redirectUri = 'http://localhost:5001/app/'
+$scope = @('https://graph.microsoft.com/.default', 'openid', 'profile', 'offline_access')
+$scope = @('https://graph.microsoft.com/.default')
 #endregion
 
 #region Az.Accounts method
@@ -189,7 +191,7 @@ $authParams = @{
     ClientId    = $clientId
     TenantId    = $tenantId
     RedirectUri = $redirectUri
-    Scopes      = $scopes
+    Scopes      = $scope
 }
 $script:auth = New-AuthTokenRequest @authParams
 #endregion

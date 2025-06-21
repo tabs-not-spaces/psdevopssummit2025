@@ -1,11 +1,11 @@
 #region auth configuration
 $tenantId = 'powers-hell.com'
-$clientId = ''
+$clientId = 'a0530fb7-7198-4a11-b996-9e711097b24f'
 $scope    = 'https://graph.microsoft.com/.default'
 #endregion
 
 #region Az.Accounts method
-Connect-AzAccount -Tenant $tenandId -ApplicationId $clientId -UseDeviceAuthentication
+Connect-AzAccount -Tenant $tenantId -ApplicationId $clientId -UseDeviceAuthentication
 $token = Get-AzAccessToken -ResourceTypeName MSGraph -AsSecureString
 #endregion
 
@@ -30,7 +30,7 @@ $authorizationParams = @{
 }
 $deviceCode = Invoke-RestMethod @authorizationParams
 
-$deviceCode.user_code | clip
+$deviceCode.user_code | Set-Clipboard
 start-process 'https://microsoft.com/devicelogin'
 
 $limit = (Get-Date).AddSeconds($deviceCode.expires_in)
